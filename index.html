@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>ROUTINE | Minimalism Fashion</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- HEADER -->
+        <header class="app-header">
+            <h1 class="brand-logo">ROUTINE</h1>
+        </header>
+
+        <!-- VIEW: TRANG CHỦ -->
+        <div id="view-home" class="view-section">
+            <div class="p-4 flex-col gap-4">
+                <div class="hero-banner" style="background-image: url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=80&w=1200');">
+                    <div class="hero-content">
+                        <p class="text-xs uppercase font-bold mb-2">Member Day</p>
+                        <h2 class="text-2xl font-bold mb-4">Routine Membership</h2>
+                        <button class="btn btn-outline" style="border-color: white; color: white;" onclick="showTiers()">KHÁM PHÁ NGAY</button>
+                    </div>
+                </div>
+
+                <div class="card mb-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <p class="text-xs text-muted uppercase font-bold mb-1">Thành viên Bạc</p>
+                            <h3 class="text-lg font-bold">Lê Minh Anh</h3>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs text-muted uppercase font-bold mb-1">Điểm tích lũy</p>
+                            <p id="home-points" class="text-lg font-bold">1,250</p>
+                        </div>
+                    </div>
+                    <div style="height: 6px; background: #f4f4f5; border-radius: 3px; overflow: hidden; margin-bottom: 8px;">
+                        <div style="height: 100%; width: 70%; background: var(--accent);"></div>
+                    </div>
+                    <p class="text-xs text-muted text-center">Cần 250 điểm nữa để thăng hạng <span class="font-bold text-accent">Vàng</span></p>
+                </div>
+
+                <div class="flex gap-4 mb-8">
+                    <div class="card flex-1 flex-col items-center justify-center p-4 gap-2" onclick="showView('shop')">
+                        <span class="material-symbols-outlined" style="font-size: 28px;">checkroom</span>
+                        <p class="text-xs font-bold uppercase mt-2">Sản phẩm</p>
+                    </div>
+                    <div class="card flex-1 flex-col items-center justify-center p-4 gap-2" onclick="showView('loyalty')">
+                        <span class="material-symbols-outlined" style="font-size: 28px;">loyalty</span>
+                        <p class="text-xs font-bold uppercase mt-2">Ưu đãi</p>
+                    </div>
+                    <div class="card flex-1 flex-col items-center justify-center p-4 gap-2" onclick="openGameHub()">
+                        <span class="material-symbols-outlined" style="font-size: 28px;">stadia_controller</span>
+                        <p class="text-xs font-bold uppercase mt-2">Giải trí</p>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-base uppercase tracking-wide">Gợi ý cho bạn</h3>
+                    <span class="material-symbols-outlined text-muted" style="font-size: 18px;" onclick="showView('shop')">arrow_forward</span>
+                </div>
+                <div class="product-grid" id="home-featured-products"></div>
+            </div>
+        </div>
+
+        <!-- VIEW: MUA SẮM -->
+        <div id="view-shop" class="view-section hidden">
+            <div class="px-4 py-2 sticky" style="top: var(--header-height); background: var(--glass-bg); backdrop-filter: var(--glass-blur); z-index: 10;">
+                <div class="input-wrapper mb-4">
+                    <span class="material-symbols-outlined text-muted ml-2">search</span>
+                    <input type="text" id="shop-search" placeholder="Tìm sản phẩm áo, quần..." oninput="handleSearch(this.value)">
+                </div>
+                <div class="tabs" style="margin-bottom: 8px;">
+                    <div class="tab active" onclick="switchShopTab('nam')">NAM</div>
+                    <div class="tab" onclick="switchShopTab('nu')">NỮ</div>
+                </div>
+            </div>
+            <div class="p-4">
+                <div class="product-grid" id="shop-product-grid"></div>
+            </div>
+        </div>
+
+        <!-- VIEW: LOYALTY -->
+        <div id="view-loyalty" class="view-section hidden">
+            <div class="p-6">
+                <!-- VIP Card -->
+                <div class="vip-card mb-8">
+                    <p class="text-xs uppercase font-semibold text-muted mb-2 tracking-wide">Silver Member</p>
+                    <h2 class="text-3xl font-bold mb-8">Lê Minh Anh</h2>
+                    <div class="flex justify-between items-end">
+                        <div>
+                            <p class="text-xs text-muted mb-1 uppercase">Điểm hiện có</p>
+                            <p class="text-2xl font-bold">1,250</p>
+                        </div>
+                        <span class="material-symbols-outlined" style="font-size: 40px; opacity: 0.8;">workspaces</span>
+                    </div>
+                    <button class="btn btn-outline mt-6" style="border-color: rgba(255,255,255,0.2); color: white;" onclick="showTiers()">CHI TIẾT HẠNG</button>
+                </div>
+
+                <h3 class="text-sm font-bold uppercase mb-4 text-muted">Đổi Voucher</h3>
+                <div class="flex flex-col gap-4 mb-8">
+                    <div class="card flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div style="width:40px;height:40px; border-radius:8px; background:#f4f4f5; display:flex; align-items:center; justify-content:center;">
+                                <span class="material-symbols-outlined">sell</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold">Voucher 50K</p>
+                                <p class="text-xs text-muted">Đổi 500 điểm</p>
+                            </div>
+                        </div>
+                        <button class="btn" style="width: 70px; padding: 8px; font-size: 12px;" onclick="redeemVoucher(50)">ĐỔI</button>
+                    </div>
+                    <div class="card flex justify-between items-center">
+                        <div class="flex items-center gap-4">
+                            <div style="width:40px;height:40px; border-radius:8px; background:#f4f4f5; display:flex; align-items:center; justify-content:center;">
+                                <span class="material-symbols-outlined">sell</span>
+                            </div>
+                            <div>
+                                <p class="text-sm font-bold">Voucher 100K</p>
+                                <p class="text-xs text-muted">Đổi 900 điểm</p>
+                            </div>
+                        </div>
+                        <button class="btn" style="width: 70px; padding: 8px; font-size: 12px;" onclick="redeemVoucher(100)">ĐỔI</button>
+                    </div>
+                </div>
+
+                <h3 class="text-sm font-bold uppercase mb-4 text-muted">Voucher Của Bạn</h3>
+                <div id="user-vouchers" class="flex flex-col gap-3"></div>
+            </div>
+        </div>
+
+        <!-- VIEW: CỬA HÀNG -->
+        <div id="view-stores" class="view-section hidden">
+            <div class="p-4">
+                <div class="card mb-6" style="background: var(--accent); color: white; padding: 24px;">
+                    <p class="text-xs uppercase font-bold text-muted mb-2 tracking-wide">Gần bạn nhất</p>
+                    <h3 class="text-xl font-bold mb-2">Routine Nguyễn Trãi</h3>
+                    <p class="text-xs opacity-80 mb-6">554 Nguyễn Trãi, Thanh Xuân, Hà Nội</p>
+                    
+                    <button class="btn btn-outline" style="border-color: rgba(255,255,255,0.3); color: white;" onclick="openBooking('Routine Nguyễn Trãi')">ĐẶT LỊCH THỬ ĐỒ</button>
+                </div>
+
+                <div class="tabs">
+                    <div class="tab store-tab active" onclick="renderStores('Tất cả', this)">Tất cả</div>
+                    <div class="tab store-tab" onclick="renderStores('Hà Nội', this)">Hà Nội</div>
+                    <div class="tab store-tab" onclick="renderStores('TP HCM', this)">TP HCM</div>
+                </div>
+
+                <div id="store-list" class="flex flex-col gap-4"></div>
+            </div>
+        </div>
+
+        <!-- VIEW: CÁ NHÂN -->
+        <div id="view-account" class="view-section hidden">
+            <div class="p-6 flex flex-col items-center">
+                <div style="width:90px;height:90px; border-radius:50%; overflow:hidden; border: 3px solid white; box-shadow: var(--shadow-md); margin-bottom: 16px;">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300" style="width:100%; height:100%; object-fit:cover;">
+                </div>
+                <h2 class="text-xl font-bold mb-1">Lee Ji-eun</h2>
+                <p class="text-sm text-gray mb-8">iu.official@routine.vn</p>
+
+                <div class="w-full card p-0 overflow-hidden mb-8">
+                    <div class="menu-item" onclick="openOverlay('order-history')">
+                        <span class="text-sm font-semibold">Lịch sử đơn hàng</span>
+                        <span class="material-symbols-outlined text-gray">chevron_right</span>
+                    </div>
+                    <div class="menu-item" onclick="openOverlay('personal-info')">
+                        <span class="text-sm font-semibold">Thông tin cá nhân</span>
+                        <span class="material-symbols-outlined text-gray">chevron_right</span>
+                    </div>
+                    <div class="menu-item" onclick="openOverlay('policies')">
+                        <span class="text-sm font-semibold">Chính sách & Quy định</span>
+                        <span class="material-symbols-outlined text-gray">chevron_right</span>
+                    </div>
+                    <div class="menu-item" onclick="openOverlay('help')">
+                        <span class="text-sm font-semibold">Trợ giúp</span>
+                        <span class="material-symbols-outlined text-gray">chevron_right</span>
+                    </div>
+                </div>
+
+                <button class="btn btn-outline w-full" style="color: #ef4444; border-color: #fca5a5;">ĐĂNG XUẤT</button>
+            </div>
+        </div>
+
+        <!-- BOTTOM NAV -->
+        <nav class="bottom-nav">
+            <a href="javascript:void(0)" class="nav-item active" id="nav-home" onclick="showView('home')">
+                <span class="material-symbols-outlined">home</span>
+                <span>Trang chủ</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" id="nav-shop" onclick="showView('shop')">
+                <span class="material-symbols-outlined">search</span>
+                <span>Sản phẩm</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" id="nav-loyalty" onclick="showView('loyalty')">
+                <span class="material-symbols-outlined">loyalty</span>
+                <span>Loyalty</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" id="nav-stores" onclick="showView('stores')">
+                <span class="material-symbols-outlined">storefront</span>
+                <span>Cửa hàng</span>
+            </a>
+            <a href="javascript:void(0)" class="nav-item" id="nav-account" onclick="showView('account')">
+                <span class="material-symbols-outlined">person</span>
+                <span>Cá nhân</span>
+            </a>
+        </nav>
+
+        <!-- OVELAYS -->
+        
+        <!-- PRODUCT DETAIL OVERLAY -->
+        <div id="overlay-product-detail" class="overlay-view hidden">
+            <header class="overlay-header">
+                <span class="material-symbols-outlined back-btn" onclick="closeOverlay('product-detail')">close</span>
+                <span class="flex-1 text-center font-bold uppercase text-sm tracking-wide">Chi tiết</span>
+                <div style="width: 40px"></div>
+            </header>
+            <div class="overlay-content p-0">
+                <img id="pd-img" src="" style="width:100%; aspect-ratio:3/4; object-fit:cover;">
+                <div class="p-6">
+                    <p class="text-xs text-gray uppercase font-bold mb-2">Sản phẩm Routine</p>
+                    <h2 id="pd-name" class="text-xl mb-2 font-bold"></h2>
+                    <p id="pd-price" class="text-xl font-bold mb-8 text-accent"></p>
+                    
+                    <p class="text-xs font-bold uppercase text-gray mb-3">Chọn Kích thước</p>
+                    <div class="flex gap-3 mb-8">
+                        <div class="size-btn active" onclick="selectSize(this)">S</div>
+                        <div class="size-btn" onclick="selectSize(this)">M</div>
+                        <div class="size-btn" onclick="selectSize(this)">L</div>
+                        <div class="size-btn" onclick="selectSize(this)">XL</div>
+                    </div>
+
+                    <p class="text-xs font-bold uppercase text-gray mb-3">Mô tả sản phẩm</p>
+                    <p class="text-sm text-gray mb-8 leading-relaxed">
+                        Thiết kế chú trọng sự thoải mái và thanh lịch. Chất liệu cotton pha spandex đem lại độ mềm mại tối đa trên bề mặt, giữ form xuất sắc qua nhiều lần giặt. Nâng tầm phong cách cá nhân với sự tối giản khác biệt.
+                    </p>
+
+                    <button class="btn" onclick="addToCart()">THÊM VÀO GIỎ</button>
+                    <button class="btn btn-outline mt-3" style="border: none;" onclick="closeOverlay('product-detail')">TÌM HIỂU THÊM Ở TRANG KHÁC</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- CART OVERLAY -->
+        <div id="overlay-cart" class="overlay-view hidden">
+            <header class="overlay-header">
+                <span class="material-symbols-outlined back-btn" onclick="closeOverlay('cart')">close</span>
+                <span class="flex-1 text-center font-bold uppercase text-sm tracking-wide">Giỏ hàng của bạn</span>
+                <div style="width: 40px"></div>
+            </header>
+            <div class="overlay-content p-4 flex flex-col justify-between">
+                <div id="cart-items" class="flex-1"></div>
+                <div class="mt-8 pt-4 border-t border-border">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm font-semibold">Tổng cộng:</span>
+                        <span id="cart-total" class="text-xl font-bold text-accent">0đ</span>
+                    </div>
+                    <button class="btn w-full" onclick="openCheckout()">TIẾN HÀNH THANH TOÁN</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHECKOUT OVERLAY -->
+        <div id="overlay-checkout" class="overlay-view hidden">
+            <header class="overlay-header">
+                <span class="material-symbols-outlined back-btn" onclick="closeOverlay('checkout')">arrow_back</span>
+                <span class="flex-1 text-center font-bold uppercase text-sm tracking-wide">Thanh toán</span>
+                <div style="width: 40px"></div>
+            </header>
+            <div class="overlay-content p-5">
+                <div class="card p-4 mb-6">
+                    <p class="text-xs uppercase font-bold text-gray mb-4">Thông tin nhận hàng</p>
+                    <div class="input-wrapper mb-3"><input type="text" placeholder="Họ và tên" value="Lê Minh Anh"></div>
+                    <div class="input-wrapper mb-3"><input type="text" placeholder="Số điện thoại" value="098****123"></div>
+                    <div class="input-wrapper"><input type="text" placeholder="Địa chỉ giao hàng"></div>
+                </div>
+
+                <div class="card p-4 mb-6">
+                    <p class="text-xs uppercase font-bold text-gray mb-4">Voucher</p>
+                    <div class="flex justify-between items-center cursor-pointer" onclick="openOverlay('voucher-select')">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-accent">local_offer</span>
+                            <span id="co-voucherName" class="text-sm font-semibold">Chọn hoặc nhập mã</span>
+                        </div>
+                        <span class="material-symbols-outlined text-gray">chevron_right</span>
+                    </div>
+                </div>
+
+                <div class="card p-4 mb-8">
+                    <div class="flex justify-between mb-2">
+                        <p class="text-sm text-gray">Tạm tính</p>
+                        <p id="co-subtotal" class="text-sm font-medium">0đ</p>
+                    </div>
+                    <div class="flex justify-between mb-4 pb-4 border-b border-border">
+                        <p class="text-sm text-gray">Giảm giá</p>
+                        <p id="co-discount" class="text-sm font-medium text-success">0đ</p>
+                    </div>
+                    <div class="flex justify-between">
+                        <p class="text-base font-bold">Tổng thanh toán</p>
+                        <p id="co-final" class="text-xl font-bold">0đ</p>
+                    </div>
+                </div>
+
+                <button class="btn" onclick="placeOrder()">HOÀN TẤT ĐẶT HÀNG</button>
+            </div>
+        </div>
+
+        <!-- SUCCESS OVERLAY -->
+        <div id="overlay-success" class="overlay-view hidden justify-center items-center p-6 text-center">
+            <div style="width: 80px; height: 80px; border-radius: 50%; background: var(--success); color: white; display: flex; align-items: center; justify-content: center; margin-bottom: 24px;">
+                <span class="material-symbols-outlined" style="font-size: 36px;">done</span>
+            </div>
+            <h2 class="text-2xl font-bold mb-2">Đặt hàng thành công</h2>
+            <p class="text-sm text-gray mb-8">Cảm ơn bạn đã mua sắm tại Routine. Đơn hàng #RTN-9201 đang được chuẩn bị.</p>
+            <button class="btn btn-outline" style="width: 200px" onclick="closeAllOverlays(); showView('home');">VỀ TRANG CHỦ</button>
+        </div>
+
+        <!-- GAME HUB -->
+        <div id="overlay-game-hub" class="overlay-view hidden">
+            <header class="overlay-header">
+                <span class="material-symbols-outlined back-btn" onclick="closeOverlay('game-hub')">close</span>
+                <span class="flex-1 text-center font-bold uppercase text-sm tracking-wide">Giải trí & Quà tặng</span>
+                <div style="width: 40px"></div>
+            </header>
+            <div class="overlay-content p-6">
+                <div class="card flex items-center gap-4 py-5 mb-4" onclick="openOverlay('wheel')">
+                    <div style="width: 50px; height: 50px; border-radius: var(--radius-sm); background: var(--bg-main); display: flex; align-items: center; justify-content: center;">
+                        <span class="material-symbols-outlined">casino</span>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold">Lucky Wheel</h3>
+                        <p class="text-xs text-gray">Quay thưởng nhận Voucher độc quyền</p>
+                    </div>
+                </div>
+
+                <div class="card flex items-center gap-4 py-5 mb-4" onclick="alert('Tính năng Mix & Match đang hoàn thiện')">
+                    <div style="width: 50px; height: 50px; border-radius: var(--radius-sm); background: var(--bg-main); display: flex; align-items: center; justify-content: center;">
+                        <span class="material-symbols-outlined">checkroom</span>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-bold">Mix & Match AI</h3>
+                        <p class="text-xs text-gray">Tạo cá tính riêng với AI Styling</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WHEEL GAME -->
+        <div id="overlay-wheel" class="overlay-view hidden text-center">
+            <header class="overlay-header">
+                <span class="material-symbols-outlined back-btn" onclick="closeOverlay('wheel')">arrow_back</span>
+                <span class="flex-1 text-center font-bold uppercase text-sm tracking-wide">Vòng Quay May Mắn</span>
+                <div style="width: 40px"></div>
+            </header>
+            <div class="overlay-content p-6 flex flex-col items-center">
+                <h2 class="text-xl font-bold mt-4 mb-2">Thử vận may ngay!</h2>
+                <p class="text-sm text-gray mb-10">Mỗi ngày 1 lượt quay cho thành viên Routine.</p>
+
+                <div class="wheel-container text-center" id="wheel">
+                    <div class="wheel-segment border-bottom"></div>
+                    <div class="wheel-segment border-bottom"></div>
+                    <div class="wheel-segment border-bottom"></div>
+                    <div class="wheel-segment border-bottom"></div>
+                    <div class="wheel-segment border-bottom"></div>
+                    <div class="wheel-segment border-bottom"></div>
+                </div>
+                <div style="width: 0; height: 0; border-left: 20px solid transparent; border-right: 20px solid transparent; border-top: 40px solid var(--accent); margin-top: -20px; z-index: 10;"></div>
+
+                <button id="spin-btn" class="btn mt-12" style="width: 250px;" onclick="spinWheel()">BẮT ĐẦU QUAY</button>
+            </div>
+        </div>
+
+        <!-- VOUCHER SELECT -->
+        <div id="overlay-voucher-select" class="overlay-view hidden">
+            <header class="overlay-header">
+                <span class="material-symbols-outlined back-btn" onclick="closeOverlay('voucher-select')">close</span>
+                <span class="flex-1 text-center font-bold uppercase text-sm tracking-wide">Chọn ưu đãi</span>
+                <div style="width: 40px"></div>
+            </header>
+            <div class="overlay-content p-6">
+                <div id="voucher-list" class="flex flex-col gap-4"></div>
+            </div>
+        </div>
+
+        <!-- TIER DETAILS -->
+        <div id="overlay-tier-details" class="overlay-view hidden">
+            <header class="overlay-header">
+                <span class="material-symbols-outlined back-btn" onclick="closeOverlay('tier-details')">close</span>
+                <span class="flex-1 text-center font-bold uppercase text-sm tracking-wide">Hạng Membership</span>
+                <div style="width: 40px"></div>
+            </header>
+            <div class="overlay-content p-5">
+                <div class="tabs mb-6" style="gap: 4px; justify-content: space-between; border: none; background: #f4f4f5; border-radius: 12px; padding: 4px;">
+                    <div class="tab tier-tab text-center flex-1" style="border-radius:8px; padding: 10px 0; font-size: 13px; font-weight:700; color:var(--text-muted);" onclick="renderTier('bronze')">ĐỒNG</div>
+                    <div class="tab tier-tab text-center flex-1 active" style="border-radius:8px; padding: 10px 0; font-size: 13px; font-weight:700; color:var(--accent); background:white; box-shadow:0 2px 4px rgba(0,0,0,0.05);" onclick="renderTier('silver')">BẠC</div>
+                    <div class="tab tier-tab text-center flex-1" style="border-radius:8px; padding: 10px 0; font-size: 13px; font-weight:700; color:var(--text-muted);" onclick="renderTier('gold')">VÀNG</div>
+                </div>
+
+                <div id="tier-content-dynamic">
+                    <!-- injected by js -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ORDER HISTORY -->
+        <div id="overlay-order-history" class="overlay-view hidden">
+            <header class="overlay-header">
+                <span class="material-symbols-outlined back-btn" onclick="closeOverlay('order-history')">arrow_back</span>
+                <span class="flex-1 text-center font-bold uppercase text-sm tracking-wide">Lịch sử đơn hàng</span>
+                <div style="width: 40px"></div>
+            </header>
+            <div class="overlay-content p-4">
+                <div class="card mb-4 p-4">
+                    <div class="flex justify-between items-center mb-3">
+                        <p class="text-sm font-bold uppercase">#RTN-9201</p>
+                        <p class="text-xs font-semibold text-success bg-white px-2 py-1 rounded border border-success">Đang chuẩn bị</p>
+                    </div>
+                    <div class="flex justify-between items-center mb-2">
+                        <p class="text-sm text-gray">30/03/2026</p>
+                        <p class="text-sm font-bold">1,820,000đ</p>
+                    </div>
+                </div>
+                <!-- Mock completed order -->
+                <div class="card mb-4 p-4 opacity-75">
+                    <div class="flex justify-between items-center mb-3">
+                        <p class="text-sm font-bold uppercase text-gray">#RTN-8452</p>
+                        <p class="text-xs font-semibold text-gray bg-white px-2 py-1 rounded border border-border">Đã giao hàng</p>
+                    </div>
+                    <div class="flex justify-between items-center mb-2">
+                        <p class="text-sm text-gray">15/02/2026</p>
+                        <p class="text-sm font-bold text-gray">450,000đ</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PERSONAL INFO -->
+        <div id="overlay-personal-info" class="overlay-view hidden">
+            <header class="overlay-header">
+                <span class="material-symbols-outlined back-btn" onclick="closeOverlay('personal-info')">arrow_back</span>
+                <span class="flex-1 text-center font-bold uppercase text-sm tracking-wide">Thông tin cá nhân</span>
+                <div style="width: 40px"></div>
+            </header>
+            <div class="overlay-content p-6">
+                <div class="flex flex-col items-center mb-8">
+                    <div style="width:90px;height:90px; border-radius:50%; overflow:hidden; border: 3px solid white; box-shadow: var(--shadow-md); margin-bottom: 16px;">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=300" style="width:100%; height:100%; object-fit:cover;">
+                    </div>
+                    <button class="text-sm font-semibold text-accent underline bg-transparent border-none">Đổi ảnh đại diện</button>
+                </div>
+                <div class="input-wrapper mb-4"><input type="text" placeholder="Họ và tên" value="Lee Ji-eun"></div>
+                <div class="input-wrapper mb-4"><input type="email" placeholder="Email" value="iu.official@routine.vn"></div>
+                <div class="input-wrapper mb-4"><input type="tel" placeholder="Số điện thoại" value="098****123"></div>
+                
+                <button class="btn mt-4" onclick="closeOverlay('personal-info'); alert('Cập nhật thành công!');">LƯU THAY ĐỔI</button>
+            </div>
+        </div>
+
+        <!-- POLICIES -->
+        <div id="overlay-policies" class="overlay-view hidden">
+            <header class="overlay-header">
+                <span class="material-symbols-outlined back-btn" onclick="closeOverlay('policies')">arrow_back</span>
+                <span class="flex-1 text-center font-bold uppercase text-sm tracking-wide">Chính sách</span>
+                <div style="width: 40px"></div>
+            </header>
+            <div class="overlay-content p-6 text-sm text-gray leading-relaxed">
+                <h3 class="text-base font-bold text-accent mb-2">1. Điều khoản bảo hành</h3>
+                <p class="mb-4">Tất cả các sản phẩm Routine đều được bảo hành đường may, khóa kéo trong vòng 3 tháng kể từ ngày mua. Quý khách vui lòng mang hóa đơn đến cửa hàng gần nhất để được hỗ trợ.</p>
+                <h3 class="text-base font-bold text-accent mb-2">2. Chính sách đổi trả</h3>
+                <p class="mb-4">Khách hàng được quyền đổi sản phẩm một lần duy nhất trong vòng 15 ngày với điều kiện sản phẩm còn nguyên tem mác, chưa qua sử dụng, giặt ủi.</p>
+                <h3 class="text-base font-bold text-accent mb-2">3. Phí vận chuyển</h3>
+                <p class="mb-4">Miễn phí giao hàng cho đơn từ 500,000đ. Đơn dưới mức trên tính phí vận chuyển đồng giá 30,000đ trên toàn quốc.</p>
+            </div>
+        </div>
+
+        <!-- HELP -->
+        <div id="overlay-help" class="overlay-view hidden">
+            <header class="overlay-header">
+                <span class="material-symbols-outlined back-btn" onclick="closeOverlay('help')">arrow_back</span>
+                <span class="flex-1 text-center font-bold uppercase text-sm tracking-wide">Trợ giúp</span>
+                <div style="width: 40px"></div>
+            </header>
+            <div class="overlay-content p-6">
+                <div class="card p-5 mb-6 text-center">
+                    <span class="material-symbols-outlined text-accent mb-2" style="font-size: 32px;">support_agent</span>
+                    <h3 class="text-base font-bold mb-1">Tổng đài CSKH</h3>
+                    <p class="text-sm text-gray mb-4">1900 633 982<br>(09:00 - 22:00 hằng ngày)</p>
+                    <button class="btn btn-outline w-full" style="height: 44px; font-size: 13px;">GỌI NGAY</button>
+                </div>
+                <div class="card p-5 text-center">
+                    <span class="material-symbols-outlined text-accent mb-2" style="font-size: 32px;">chat</span>
+                    <h3 class="text-base font-bold mb-1">Trò chuyện với chúng tôi</h3>
+                    <p class="text-sm text-gray mb-4">Nhắn tin qua Facebook hoặc Zalo</p>
+                    <button class="btn w-full" style="height: 44px; font-size: 13px;">GỬI TIN NHẮN</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- BOOKING / ALERTS-->
+
+        <div id="overlay-booking" class="overlay-view hidden">
+            <header class="overlay-header">
+                <span class="material-symbols-outlined back-btn" onclick="closeOverlay('booking')">arrow_back</span>
+                <span class="flex-1 text-center font-bold uppercase text-sm tracking-wide">Đặt hẹn</span>
+                <div style="width: 40px"></div>
+            </header>
+            <div class="overlay-content p-6">
+                <div class="card p-5">
+                    <h2 id="book-store-name" class="text-lg font-bold mb-6">Routine Nguyễn Trãi</h2>
+                    <div class="input-wrapper mb-4"><input type="date" value="2026-03-31"></div>
+                    <div class="input-wrapper mb-4">
+                        <select>
+                            <option>09:00 - 10:00</option>
+                            <option>10:00 - 11:00</option>
+                            <option>14:00 - 15:00</option>
+                        </select>
+                    </div>
+                    <button class="btn mt-4" onclick="closeOverlay('booking'); alert('Đặt lịch thành công! Bạn sẽ nhận được email xác nhận.')">XÁC NHẬN ĐẶT LỊCH</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Cart Icon (Global active state) -->
+        <div id="floating-cart" style="position: fixed; bottom: calc(var(--nav-height) + 20px); right: 20px; width: 56px; height: 56px; background: var(--accent); color: white; border-radius: 50%; display: none; align-items: center; justify-content: center; box-shadow: var(--shadow-lg); z-index: 900; cursor: pointer;" onclick="openOverlay('cart')">
+            <span class="material-symbols-outlined">shopping_bag</span>
+            <div id="cart-badge" style="position: absolute; top: -5px; right: -5px; background: var(--success); width: 22px; height: 22px; border-radius: 50%; font-size: 11px; font-weight: bold; display: flex; align-items: center; justify-content: center;">1</div>
+        </div>
+
+    </div>
+
+    <!-- MAIN SCRIPT -->
+    <script src="main.js"></script>
+</body>
+</html>

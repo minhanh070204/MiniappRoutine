@@ -73,7 +73,8 @@
 
                 <div class="flex flex-col gap-4 mb-8">
                     <div class="flex justify-between items-center">
-                        <h3 class="text-base uppercase tracking-wide">Tin thời trang</h3>
+                        <h3 class="text-base font-bold" style="color: #000000;">Tin thời trang</h3>
+                        <span class="text-sm cursor-pointer font-semibold" style="color: #000000;">Tất cả ></span>
                     </div>
                     <div class="news-slider-container">
                         <div class="news-slider" id="news-slider">
@@ -146,60 +147,117 @@
                     <div id="point-redeem-options" class="hidden"></div>
                 </div>
                 <div class="mb-8">
-                    <h3 class="text-sm font-bold uppercase mb-4 text-muted">Thông Tin Membership</h3>
-                    <div class="card p-4">
-                        <p class="text-sm mb-2"><span class="font-bold text-gray">Họ tên:</span> Lê Minh Anh</p>
-                        <p class="text-sm mb-2"><span class="font-bold text-gray">Giới tính:</span> Nam</p>
-                        <p class="text-sm mb-2"><span class="font-bold text-gray">Ngày sinh:</span> 15/08/1998</p>
-                        <hr class="my-3 border-border">
-                        <div class="input-wrapper mb-3"><input type="text" placeholder="Nghề nghiệp hiện tại"
-                                value="Nhân viên văn phòng"></div>
-                        <div class="input-wrapper mb-3"><input type="text" placeholder="Nơi sinh sống" value="Hà Nội">
+                    <div class="card p-4 flex justify-between items-center cursor-pointer border-l-4" style="border-left-color: var(--accent);" onclick="openOverlay('membership-info')">
+                        <div class="flex items-center gap-3">
+                            <div style="width: 40px; height: 40px; background: #f4f4f5; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <span class="material-symbols-outlined text-accent" style="font-size: 20px;">account_circle</span>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-bold">Thông tin Membership</h3>
+                                <p class="text-xs text-muted">Xem hoặc cập nhật họ tên, ngày sinh...</p>
+                            </div>
                         </div>
-                        <button class="btn mt-2 h-10 text-xs">CẬP NHẬT THÔNG TIN</button>
+                        <span class="material-symbols-outlined text-gray">chevron_right</span>
                     </div>
                 </div>
                 <div class="mb-4">
-                    <h3 class="text-sm font-bold uppercase mb-4 text-muted">Routine Wrapped</h3>
-                    <div class="grid grid-cols-2 gap-3">
-                        <div class="card p-3 flex flex-col justify-center items-center text-center cursor-pointer"
-                            onclick="alert('Danh hiệu: Cỗ Máy Tiêu Tiền!')">
-                            <span class="material-symbols-outlined text-accent mb-1">payments</span>
-                            <p class="text-xs text-gray">Đã chi tiêu</p>
-                            <p class="font-bold">12,500K</p>
-                        </div>
-                        <div class="card p-3 flex flex-col justify-center items-center text-center cursor-pointer"
-                            onclick="alert('Danh hiệu: Thợ Săn Sale!')">
-                            <span class="material-symbols-outlined text-success mb-1">savings</span>
-                            <p class="text-xs text-gray">Đã tiết kiệm</p>
-                            <p class="font-bold">1,850K</p>
-                        </div>
-                        <div class="card p-3 flex flex-col justify-center items-center text-center cursor-pointer"
-                            onclick="alert('Danh hiệu: Gương Mặt Thân Quen!')">
-                            <span class="material-symbols-outlined text-accent mb-1">shopping_bag</span>
-                            <p class="text-xs text-gray">Số lần mua sắm</p>
-                            <p class="font-bold">14 lần</p>
-                        </div>
+                    <h3 class="text-sm font-bold uppercase mb-4 text-muted flex items-center gap-2" style="gap: 8px;">
+                         <span class="material-symbols-outlined text-accent" style="font-size: 18px;">celebration</span> Routine Recap
+                    </h3>
+                    
+                    <div class="flex flex-col gap-4" style="gap: 16px;">
+                         <!-- Hàng 1: Đã chi tiêu (Feature Card - Premium Gradient) -->
+                         <div class="card p-6 relative overflow-hidden flex flex-col justify-center shadow-lg cursor-pointer" style="background: linear-gradient(135deg, #222 0%, #444 100%); color: white !important; min-height: 130px; border-radius: 16px; border: none;" onclick="alert('Danh hiệu: Cỗ Máy Tiêu Tiền!')">
+                              <!-- Abstract background shape -->
+                              <div style="position: absolute; right: -20px; top: -30px; width: 140px; height: 140px; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); border-radius: 50%;"></div>
+                              
+                              <div class="flex items-center gap-2 mb-2 z-10" style="opacity: 0.8; gap: 8px;">
+                                   <div class="w-8 h-8 rounded-full flex items-center justify-center" style="background: rgba(255,255,255,0.15); width: 32px; height: 32px;">
+                                        <span class="material-symbols-outlined text-[16px]" style="color: white; font-size: 16px;">payments</span>
+                                   </div>
+                                   <p class="text-[11px] font-semibold uppercase tracking-widest" style="color: #eee; font-size: 11px;">Tổng Đã Chi Tiêu</p>
+                              </div>
+                              <p class="text-[34px] font-black tracking-tighter z-10 leading-none mt-1" style="font-size: 34px; color: white;">12,500K</p>
+                         </div>
 
-                        <div class="card p-3 flex flex-col justify-center items-center text-center cursor-pointer"
-                            onclick="openStores()">
-                            <span class="material-symbols-outlined text-accent mb-1">store</span>
-                            <p class="text-xs text-gray">CH Yêu thích</p>
-                            <p class="font-bold text-xs">Routine Nguyễn Trãi</p>
-                        </div>
-                        <div class="card p-3 flex flex-col justify-center items-center text-center cursor-pointer"
-                            onclick="alert('Danh hiệu: Thành Viên Thân Thiết!')">
-                            <span class="material-symbols-outlined text-accent mb-1">workspace_premium</span>
-                            <p class="text-xs text-gray">Hạng cao nhất</p>
-                            <p class="font-bold">Silver</p>
-                        </div>
-                        <div class="card p-3 flex flex-col justify-center items-center text-center cursor-pointer"
-                            onclick="alert('Danh hiệu: Chuyên Gia Mặc Đẹp!')">
-                            <span class="material-symbols-outlined text-accent mb-1">checkroom</span>
-                            <p class="text-xs text-gray">Dòng chân ái</p>
+                         <!-- Hàng 2: Tiết kiệm & Mua sắm (Grid 2x2) -->
+                         <div style="display: flex; flex-direction: row; gap: 16px;">
+                              <!-- Tiết kiệm -->
+                              <div class="card p-5 flex flex-col shadow-sm border-gray-100 border cursor-pointer" style="flex: 1; background: #f0fdf4; border-radius: 16px;" onclick="alert('Danh hiệu: Thợ Săn Sale!')">
+                                   <div class="flex items-start mb-4">
+                                        <div class="w-10 h-10 rounded-full flex items-center justify-center bg-white shadow-sm" style="width: 40px; height: 40px;">
+                                             <span class="material-symbols-outlined text-success" style="font-size: 20px; color: #10b981;">savings</span>
+                                        </div>
+                                   </div>
+                                   <p class="text-gray-500 font-bold mb-1 uppercase tracking-widest" style="font-size: 10px; color: #6b7280;">Đã Tiết Kiệm</p>
+                                   <p class="font-black text-success tracking-tight" style="font-size: 22px; color: #10b981;">1,850K</p>
+                              </div>
+                              
+                              <!-- Số lần mua sắm -->
+                              <div class="card p-5 flex flex-col shadow-sm border-gray-100 border cursor-pointer" style="flex: 1; background: #eff6ff; border-radius: 16px;">
+                                   <div class="flex items-start mb-4">
+                                        <div class="w-10 h-10 rounded-full flex items-center justify-center bg-white shadow-sm" style="width: 40px; height: 40px;">
+                                             <span class="material-symbols-outlined" style="font-size: 20px; color: #2563eb;">shopping_bag</span>
+                                        </div>
+                                   </div>
+                                   <p class="text-gray-500 font-bold mb-1 uppercase tracking-widest" style="font-size: 10px; color: #6b7280;">Số Lần Mua</p>
+                                   <p class="font-black tracking-tight" style="font-size: 22px; color: #1d4ed8;">14 <span style="font-size: 14px;">Lần</span></p>
+                              </div>
+                         </div>
 
-                            <p class="font-bold">Quần Jean</p>
-                        </div>
+                         <!-- Hàng 3: Hạng Cao Nhất (Progress gamification) -->
+                         <div class="card p-5 flex flex-col shadow-sm border-gray-100 cursor-pointer" style="background: white; border-radius: 16px;" onclick="alert('Sắp lên Gold rồi!')">
+                              <div class="flex justify-between items-center mb-4">
+                                   <div class="flex items-center" style="gap: 12px;">
+                                        <div class="rounded-full flex items-center justify-center bg-gray-50 border border-gray-100" style="width: 48px; height: 48px;">
+                                             <span class="material-symbols-outlined text-gray" style="font-size: 24px;">workspace_premium</span>
+                                        </div>
+                                        <div>
+                                             <p class="text-gray uppercase font-bold tracking-widest mb-0.5" style="font-size: 10px;">Hạng Cao Nhất</p>
+                                             <p class="font-black" style="font-size: 18px; color: #1f2937;">Silver Member</p>
+                                        </div>
+                                   </div>
+                                   <span class="material-symbols-outlined" style="color: #d1d5db;">workspace_premium</span>
+                              </div>
+                              <!-- Progress bar to Gold -->
+                              <div class="w-full bg-gray-100 rounded-full mb-2" style="height: 8px; background-color: #f3f4f6;">
+                                  <div class="rounded-full" style="width: 65%; height: 8px; background-color: #9ca3af;"></div>
+                              </div>
+                              <p class="text-right font-medium" style="font-size: 10px; color: #6b7280;">✨ Còn 350K nữa lên hạng Gold</p>
+                         </div>
+
+                         <!-- Hàng 4: Dòng Chân Ái (Có hình minh họa) -->
+                         <div class="card p-4 flex shadow-sm border-gray-100 cursor-pointer items-center justify-between" style="background: white; border-radius: 16px;">
+                              <div class="pl-2">
+                                   <div class="flex items-center gap-2 mb-1" style="opacity: 0.6; gap: 8px;">
+                                        <span class="material-symbols-outlined" style="font-size: 14px;">favorite</span>
+                                        <p class="font-bold uppercase tracking-widest" style="font-size: 10px;">Dòng Chân Ái</p>
+                                   </div>
+                                   <p class="font-black text-accent mt-1 tracking-tight" style="font-size: 22px;">Quần Jean</p>
+                                   <p class="mt-1 font-semibold" style="font-size: 11px; color: #9ca3af;">Đã mua 6 sản phẩm</p>
+                              </div>
+                              <!-- Image illustration -->
+                              <div class="bg-gray-50 rounded-xl overflow-hidden border border-gray-100 flex items-center justify-center shadow-inner" style="width: 84px; height: 84px; background: #f9fafb; border-radius: 12px;">
+                                   <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?q=80&w=600" style="width: 100%; height: 100%; object-fit: cover;">
+                              </div>
+                         </div>
+
+                         <!-- Hàng 5: CH Yêu Thích -->
+                         <div class="card p-5 flex flex-col shadow-sm border-gray-100 cursor-pointer" style="background: white; border-radius: 16px; position: relative; overflow: hidden;" onclick="openStores()">
+                              <!-- A subtle map icon background inside the card -->
+                              <div style="position: absolute; right: -5px; bottom: -20px; opacity: 0.05; pointer-events: none;">
+                                   <span class="material-symbols-outlined" style="font-size: 120px; color: #000;">map</span>
+                              </div>
+                              <div class="flex items-center z-10" style="gap: 16px;">
+                                   <div class="rounded-full flex items-center justify-center shadow-sm" style="width: 48px; height: 48px; background: #fef2f2; color: #ef4444;">
+                                        <span class="material-symbols-outlined" style="font-size: 24px;">store</span>
+                                   </div>
+                                   <div>
+                                        <p class="text-gray uppercase font-bold tracking-widest mb-0.5" style="font-size: 10px;">CH Yêu Thích</p>
+                                        <p class="font-black text-accent tracking-tight" style="font-size: 18px;">Routine Nguyễn Trãi</p>
+                                   </div>
+                              </div>
+                         </div>
                     </div>
                     <button class="btn w-full mt-6"
                         style="background: linear-gradient(135deg, #000 0%, #434343 100%); margin-bottom: 24px;"
@@ -613,6 +671,7 @@
                 <div id="vd-action"></div>
             </div>
         </div>
+    </div>
 
         <!-- OVERLAY: THANH TOÁN (SHOPEE STYLE) -->
         <div id="overlay-checkout" class="overlay-view hidden">
@@ -700,48 +759,120 @@
                 <span class="flex-1 text-center font-bold uppercase text-sm tracking-wide">Thông tin cá nhân</span>
                 <div style="width: 40px"></div>
             </header>
-            <div class="overlay-content">
-                <div class="p-6">
-                    <div class="flex flex-col items-center mb-8">
-                        <div class="relative">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6vI2xO2Q-W7zLyoIuA0BvB1Yp1kOnI_mE_w&s"
-                                style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid white; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                            <div
-                                class="absolute bottom-0 right-0 bg-accent text-white p-1 rounded-full border-2 border-white">
-                                <span class="material-symbols-outlined" style="font-size: 16px;">edit</span>
-                            </div>
+            <div class="overlay-content p-5" style="background-color: #f8f9fa;">
+                
+                <!-- CARD 1: ẢNH ĐẠI DIỆN -->
+                <div class="card p-6 mb-6 shadow-sm border-none bg-white flex flex-col items-center relative" style="border-radius: 16px;">
+                    <!-- Nút edit nhỏ góc avatar -->
+                    <div class="relative mb-3">
+                        <div style="width: 84px; height: 84px; background: linear-gradient(135deg, #111, #444); color: white; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 34px; font-weight: 800; box-shadow: 0 4px 14px rgba(0,0,0,0.15);">
+                            L
+                        </div>
+                        <div class="absolute bottom-0 right-0 bg-white shadow-md cursor-pointer text-accent flex items-center justify-center border border-gray-100" style="width: 32px; height: 32px; border-radius: 50%;">
+                            <span class="material-symbols-outlined" style="font-size: 16px;">edit</span>
                         </div>
                     </div>
+                </div>
 
+                <!-- CARD 2: CÁC TRƯỜNG THÔNG TIN LIÊN HỆ -->
+                <div>
+                    <p class="text-[11px] uppercase font-bold text-muted ml-1 mb-3 tracking-widest">Thông tin liên hệ</p>
                     <div class="space-y-4">
-                        <div>
-                            <label class="text-[10px] uppercase font-bold text-muted mb-1 block">Họ và tên</label>
-                            <input type="text"
-                                class="w-full p-3 bg-gray-50 border border-gray-100 rounded-xl font-semibold"
-                                value="Lê Minh Anh">
+                        <div class="input-wrapper border border-gray-100 shadow-sm" style="background: white; padding: 0 16px; min-height: 54px; border-radius: 12px;">
+                            <span class="material-symbols-outlined text-muted" style="font-size: 22px; margin-right: 14px;">person</span>
+                            <input type="text" class="font-semibold text-accent w-full" value="Lê Minh Anh" placeholder="Họ và tên" style="background: transparent; outline: none; font-size: 14px;">
                         </div>
-                        <div>
-                            <label class="text-[10px] uppercase font-bold text-muted mb-1 block">Số điện thoại</label>
-                            <input type="text"
-                                class="w-full p-3 bg-gray-50 border border-gray-100 rounded-xl font-semibold"
-                                value="0987 *** 321">
+                        
+                        <div class="input-wrapper border border-gray-100 shadow-sm" style="background: white; padding: 0 16px; min-height: 54px; border-radius: 12px;">
+                            <span class="material-symbols-outlined text-muted" style="font-size: 22px; margin-right: 14px;">phone_iphone</span>
+                            <input type="text" class="font-semibold text-accent w-full" value="0987 *** 321" placeholder="Số điện thoại" style="background: transparent; outline: none; font-size: 14px;">
                         </div>
-                        <div>
-                            <label class="text-[10px] uppercase font-bold text-muted mb-1 block">Email</label>
-                            <input type="text"
-                                class="w-full p-3 bg-gray-50 border border-gray-100 rounded-xl font-semibold"
-                                value="minhanh***@gmail.com">
+                        
+                        <div class="input-wrapper border border-gray-100 shadow-sm" style="background: white; padding: 0 16px; min-height: 54px; border-radius: 12px;">
+                            <span class="material-symbols-outlined text-muted" style="font-size: 22px; margin-right: 14px;">mail</span>
+                            <input type="text" class="font-semibold text-accent w-full" value="minhanh***@gmail.com" placeholder="Email" style="background: transparent; outline: none; font-size: 14px;">
                         </div>
-                        <div>
-                            <label class="text-[10px] uppercase font-bold text-muted mb-1 block">Địa chỉ mặc
-                                định</label>
-                            <textarea class="w-full p-3 bg-gray-50 border border-gray-100 rounded-xl font-semibold"
-                                rows="2">74 Nguyễn Trãi, Q. Thanh Xuân, Hà Nội</textarea>
+                        
+                        <div class="input-wrapper border border-gray-100 shadow-sm flex items-start" style="background: white; padding: 14px 16px; border-radius: 12px; height: auto;">
+                            <span class="material-symbols-outlined text-muted mt-0.5" style="font-size: 22px; margin-right: 14px;">home_pin</span>
+                            <textarea class="font-semibold text-accent w-full" rows="2" placeholder="Địa chỉ mặc định" style="background: transparent; outline: none; font-size: 14px; resize: none; border: none; padding: 0;">74 Nguyễn Trãi, Q. Thanh Xuân, Hà Nội</textarea>
                         </div>
                     </div>
+                </div>
 
-                    <button class="btn w-full mt-8" onclick="alert('Cập nhật thành công!'); closeOverlay('profile')">LƯU
-                        THAY ĐỔI</button>
+                <div class="mt-8 pb-8">
+                    <!-- Button LƯU THAY ĐỔI -->
+                    <button class="w-full flex items-center justify-center shadow-md bg-accent text-white" style="height: 52px; border-radius: 12px; font-size: 14px; font-weight: 600; letter-spacing: 1px; transition: transform 0.1s;" onclick="alert('Cập nhật thành công!'); closeOverlay('profile')">LƯU THAY ĐỔI</button>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- OVERLAY: THÔNG TIN MEMBERSHIP -->
+        <div id="overlay-membership-info" class="overlay-view hidden">
+            <header class="overlay-header">
+                <span class="material-symbols-outlined back-btn" onclick="closeOverlay('membership-info')">arrow_back</span>
+                <span class="flex-1 text-center font-bold uppercase text-sm tracking-wide">Thông tin cá nhân</span>
+                <div style="width: 40px"></div>
+            </header>
+            <div class="overlay-content p-5" style="background-color: #f8f9fa;">
+                
+                <!-- CARD 1: THÔNG TIN TĨNH (AVATAR, HEADER & THÔNG TIN CƠ BẢN) -->
+                <div class="card p-6 mb-6 shadow-sm border-none bg-white flex flex-col items-center">
+                    
+                    <!-- Initial Avatar -->
+                    <div style="width: 76px; height: 76px; background: linear-gradient(135deg, var(--accent) 0%, #004d99 100%); color: white; display: flex; justify-content: center; align-items: center; border-radius: 50%; font-size: 32px; font-weight: 800; box-shadow: 0 4px 12px rgba(0,43,94,0.15); margin-bottom: 16px;">
+                        L
+                    </div>
+                    
+                    <!-- Badge Hạng -->
+                    <div style="background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%); color: #424242; padding: 4px 14px; border-radius: 100px; font-size: 10px; font-weight: 800; letter-spacing: 0.5px; margin-bottom: 8px; border: 1px solid #d4d4d4;">
+                        THÀNH VIÊN BẠC
+                    </div>
+                    
+                    <!-- Tên -->
+                    <h2 class="text-2xl font-extrabold text-accent mb-6" style="letter-spacing: -0.5px;">Lê Minh Anh</h2>
+
+                    <!-- Giới tính & Ngày sinh -->
+                    <div class="w-full space-y-3">
+                         <div class="flex justify-between items-center p-3 rounded-xl border border-gray-100" style="background: #fafafa;">
+                              <div class="flex items-center text-muted" style="gap: 12px;">
+                                  <span class="material-symbols-outlined" style="font-size: 22px;">male</span>
+                                  <span class="text-[11px] font-bold uppercase tracking-wide">Giới tính</span>
+                              </div>
+                              <span class="font-bold text-sm text-accent">Nam</span>
+                         </div>
+                         
+                         <div class="flex justify-between items-center p-3 rounded-xl border border-gray-100" style="background: #fafafa;">
+                              <div class="flex items-center text-muted" style="gap: 12px;">
+                                  <span class="material-symbols-outlined" style="font-size: 22px;">cake</span>
+                                  <span class="text-[11px] font-bold uppercase tracking-wide">Ngày sinh</span>
+                              </div>
+                              <span class="font-bold text-sm text-accent">15/08/1998</span>
+                         </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2: THÔNG TIN BỔ SUNG (CÓ THỂ CHỈNH SỬA) -->
+                <div>
+                    <p class="text-[11px] uppercase font-bold text-muted ml-1 mb-3 tracking-widest">Thông tin bổ sung</p>
+                    <div class="space-y-4">
+                        <div class="input-wrapper border border-gray-100 shadow-sm" style="background: white; padding: 0 16px; min-height: 54px; border-radius: 12px;">
+                            <span class="material-symbols-outlined text-muted" style="font-size: 22px; margin-right: 14px;">work_outline</span>
+                            <input type="text" class="font-semibold text-accent w-full" value="Nhân viên văn phòng" placeholder="Nghề nghiệp hiện tại" style="background: transparent; outline: none; font-size: 14px;">
+                        </div>
+                        
+                        <div class="input-wrapper border border-gray-100 shadow-sm" style="background: white; padding: 0 16px; min-height: 54px; border-radius: 12px;">
+                            <span class="material-symbols-outlined text-muted" style="font-size: 22px; margin-right: 14px;">location_on</span>
+                            <input type="text" class="font-semibold text-accent w-full" value="Hà Nội" placeholder="Nơi sinh sống" style="background: transparent; outline: none; font-size: 14px;">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 pb-8">
+                    <!-- Button LƯU THAY ĐỔI -->
+                    <button class="w-full flex items-center justify-center shadow-md bg-accent text-white" style="height: 52px; border-radius: 12px; font-size: 14px; font-weight: 600; letter-spacing: 1px; transition: transform 0.1s;" onclick="alert('Cập nhật thành công!'); closeOverlay('membership-info')">LƯU THAY ĐỔI</button>
                 </div>
             </div>
         </div>

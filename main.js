@@ -447,8 +447,15 @@ function renderNewsSlider() {
         <div class="news-card" onclick="viewNews(${idx})">
             <div class="news-img-wrapper">
                 <img src="${item.img}" alt="${item.title}">
+                <div class="news-overlay"></div>
+                <div class="news-content">
+                    <p class="news-card-title">${item.title}</p>
+                    <div class="news-date">
+                        <span class="material-symbols-outlined" style="font-size: 14px;">schedule</span>
+                        <span>${item.date}</span>
+                    </div>
+                </div>
             </div>
-            <p class="news-card-title">${item.title}</p>
         </div>
     `).join('');
 }

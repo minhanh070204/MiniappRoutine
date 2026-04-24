@@ -734,6 +734,32 @@
             </div>
         </div>
 
+        <!-- OVERLAY: THANH TOÁN THÀNH CÔNG -->
+        <div id="overlay-order-success" class="overlay-view hidden" style="background: rgba(0,0,0,0.85); z-index: 1050; animation: fadeIn 0.3s ease;">
+            <div class="flex-1 flex flex-col items-center justify-center p-6 text-center min-h-screen">
+                <div style="width: 80px; height: 80px; background: rgba(255,255,255,0.05); color: #fff; border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; margin-bottom: 24px; box-shadow: 0 0 20px rgba(255,255,255,0.1);">
+                    <span class="material-symbols-outlined" style="font-size: 40px; color: white;">check</span>
+                </div>
+                <h2 class="text-3xl font-black uppercase tracking-widest mb-2 text-white">ĐẶT HÀNG<br>THÀNH CÔNG</h2>
+                <p class="text-sm text-gray mb-8 opacity-80" style="color: #ccc;">Đơn hàng của bạn đang được xử lý.</p>
+                
+                <div class="card p-8 w-full mb-8 shadow-2xl relative overflow-hidden" style="background: linear-gradient(135deg, #222 0%, #000 100%); border: 1px solid rgba(255,255,255,0.15); border-radius: 20px;">
+                    <div style="position: absolute; left: -30px; top: -30px; width: 120px; height: 120px; background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+                    <div style="position: absolute; right: 10px; bottom: 10px; color: rgba(255,255,255,0.03); pointer-events: none; line-height: 1;"><span class="material-symbols-outlined" style="font-size: 100px;">workspace_premium</span></div>
+                    
+                    <p class="text-[11px] font-bold uppercase tracking-widest mb-3" style="color: #888;">Bạn vừa nhận được</p>
+                    <div class="flex items-center justify-center">
+                        <span class="font-black" style="font-size: 64px; line-height: 1; color: white;">+</span>
+                        <span id="order-earned-points" class="font-black" style="font-size: 64px; line-height: 1; color: white;">0</span>
+                    </div>
+                    <p class="text-[11px] font-bold uppercase mt-2 tracking-widest" style="color: #bbb;">Điểm Routine Rewards</p>
+                </div>
+                
+                <button class="btn w-full mb-4 shadow-lg" style="background: white !important; color: black !important; font-weight: 800; font-size: 14px; height: 55px;" onclick="closeAllOverlays(); showView('membership')">XEM HẠNG THÀNH VIÊN</button>
+                <button class="btn btn-outline w-full" style="color: white; border-color: rgba(255,255,255,0.2); font-weight: bold;" onclick="closeAllOverlays(); showView('shop')">TIẾP TỤC MUA SẮM</button>
+            </div>
+        </div>
+
         <div id="overlay-news-detail" class="overlay-view hidden">
             <header class="overlay-header">
                 <span class="material-symbols-outlined back-btn" onclick="closeOverlay('news-detail')">arrow_back</span>

@@ -673,16 +673,36 @@ function updateFloatingCart() {
 }
 
 function placeOrder() {
+    if (currentCart.length === 0) return alert('Giỏ hàng trống!');
+    
+    // Calculate final value for points
+    const subtotal = currentCart.reduce((sum, it) => sum + (it.price * it.qty), 0);
+    let discount = 0;
+    if (appliedVoucher) {
+        if (appliedVoucher.mode === 'percent') discount = subtotal * appliedVoucher.amount;
+        else discount = appliedVoucher.amount;
+    }
+    if (discount > subtotal) discount = subtotal;
+    const finalAmt = subtotal - discount;
+    
+    // 10K = 10 points => 1K = 1 point
+    const pointsEarned = Math.floor(finalAmt / 1000);
+    userPoints += pointsEarned;
+    
+    const ptEl = document.getElementById('home-points');
+    const membEl = document.getElementById('membership-points');
+    if (ptEl) ptEl.innerText = userPoints.toLocaleString();
+    if (membEl) membEl.innerText = userPoints.toLocaleString();
+    
+    const epEl = document.getElementById('order-earned-points');
+    if (epEl) epEl.innerText = pointsEarned.toLocaleString();
+
     currentCart = [];
     appliedVoucher = null;
     updateFloatingCart();
     closeAllOverlays();
 
-    // Trigger Success message with Shopee vibe
-    document.getElementById('redeem-success-msg').innerText = "Đặt hàng thành công! Đơn hàng của bạn đang được xử lý và sẽ sớm giao đến bạn.";
-    const btn = document.querySelector('#overlay-redeem-success .btn');
-    if (btn) btn.innerText = "TIẾP TỤC MUA SẮM";
-    openOverlay('redeem-success');
+    openOverlay('order-success');
 }
 
 // --- VOUCHERS ---
